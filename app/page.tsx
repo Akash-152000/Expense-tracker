@@ -1,8 +1,9 @@
-// app/page.tsx
+import AuthButton from "@/components/AuthButton";
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-3xl font-bold">Expense Tracker</h1>
+    <main className="flex items-center justify-center min-h-screen">
+      <AuthButton />
     </main>
   );
 }
