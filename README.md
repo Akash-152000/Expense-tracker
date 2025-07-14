@@ -1,9 +1,3 @@
-Absolutely — here's a tailored and professional `README.md` for your **Next.js Expense Tracker App** using the tech stack you're working with (Next.js 15, TypeScript, Tailwind CSS, ESLint, Prettier, `next-auth`, etc.).
-
----
-
-## ✅ README.md
-
 ````markdown
 # 💸 Expense Tracker – Fullstack App with Analytics
 
