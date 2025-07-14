@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Expense Calculator",
+  title: "Expense Tracker",
   description: "Track all of your daily expenses",
 };
 
