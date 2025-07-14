@@ -122,26 +122,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 
 ---
-
-## ✅ How To Use This
-
-1. Create a file in your root:
-
-
-README.md
-
-
-2. Paste the content above.
-3. Replace:
-- `your-client-id`, `your-postgres-db-url`, etc.
-- Add a screenshot to `public/preview.png` if possible.
-- Update social links if you'd like.
-
----
-
-Would you like me to:
-- Help generate a `preview.png` using dummy data?
-- Add `.gitignore` and `LICENSE` files?
-- Write your first **LinkedIn post** about this build?
-
-Let’s polish it for the world to see.
