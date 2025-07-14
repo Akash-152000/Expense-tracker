@@ -1,9 +1,10 @@
 ````markdown
-# 💸 Expense Tracker – Fullstack App with Analytics
+# 💸 **Expense Tracker** – Fullstack App with Analytics
 
-A professional, fullstack expense tracking and data analytics web app built with **Next.js 15 App Router**, **TypeScript**, and modern tools like **Prisma**, **Tailwind CSS**, and **next-auth**.
+A professional, fullstack **expense tracking and analytics** web app built with **Next.js 15 (App Router)**, **TypeScript**, **Tailwind CSS**, **Prisma**, and **next-auth**.
 
-> Built for personal finance management and visual insights. Fully responsive and production-ready.
+**Built for personal finance management and visual insights. Fully responsive and production-ready.**
+
 
 ---
 
