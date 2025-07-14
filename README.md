@@ -22,11 +22,12 @@ A professional, fullstack **expense tracking and analytics** web app built with 
 ---
 
 ## 📸 Preview
-
+Coming soon
+<!--
 > _(Add your screenshot here when ready)_  
 > Example:  
 > ![Dashboard Screenshot](./public/preview.png)
-
+-->
 ---
 
 ## 🛠️ Tech Stack
