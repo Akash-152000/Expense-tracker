@@ -53,7 +53,7 @@ Coming soon
 git clone https://github.com/Akash-152000/Expense-tracker.git
 cd Expense-tracker
 ```
-````
+
 
 ### 2. Install Dependencies
 
@@ -120,18 +120,17 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 > Follow my build journey on [LinkedIn](#) and [Twitter](#)
 
-```
 
 ---
 
 ## ✅ How To Use This
 
 1. Create a file in your root:
-```
+
 
 README.md
 
-```
+
 2. Paste the content above.
 3. Replace:
 - `your-client-id`, `your-postgres-db-url`, etc.
@@ -146,4 +145,3 @@ Would you like me to:
 - Write your first **LinkedIn post** about this build?
 
 Let’s polish it for the world to see.
-```
