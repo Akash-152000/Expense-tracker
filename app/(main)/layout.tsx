@@ -1,7 +1,10 @@
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import type { Session } from 'next-auth'; // ✅ Add this
+import type { Session } from 'next-auth';
+
 import Sidebar from '@/components/Sidebar';
+import MobileTopBar from '@/components/MobileTopBar';
+import MobileNav from '@/components/MobileNav';
 
 export default async function MainLayout({
     children,
@@ -12,8 +15,17 @@ export default async function MainLayout({
 
     return (
         <div className="flex min-h-screen">
-            <Sidebar user={session?.user as Session['user']} />
-            <main className="flex-1 p-6">{children}</main>
+            {/* ✅ Desktop sidebar (hidden on mobile) */}
+            <div className="hidden md:block">
+                <Sidebar user={session?.user as Session['user']} />
+            </div>
+
+            {/* ✅ Main area with top bar (mobile) + content + bottom nav (mobile) */}
+            <div className="flex-1 flex flex-col">
+                <MobileTopBar /> {/* Mobile only top bar */}
+                <main className="flex-1 p-6 pb-20">{children}</main>
+                <MobileNav />
+            </div>
         </div>
     );
 }

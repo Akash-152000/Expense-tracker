@@ -5,17 +5,23 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-    { label: 'Dashboard', href: '/home' },
-    { label: 'Add Expense', href: '/add-expense' },
+    { label: 'Dashboard', href: '/Home' },
+    { label: 'Add Expense', href: '/add_expenses' },
     { label: 'Analytics', href: '/analytics' },
     { label: 'Settings', href: '/settings' },
 ];
 
-export default function Sidebar({ user }: { user?: { name?: string } }) {
+type SidebarProps = {
+    user?: {
+        name?: string | null;
+    };
+};
+
+export default function Sidebar({ user }: SidebarProps) {
     const pathname = usePathname();
 
     return (
-        <aside className="w-64 bg-blue-600 text-white p-6 space-y-4">
+        <aside className="w-64 h-full bg-blue-600 text-white p-6 space-y-4">
             <div className="text-xl font-semibold">{user?.name || 'ExpenseTracker'}</div>
             <nav className="space-y-2">
                 {navItems.map((item) => (

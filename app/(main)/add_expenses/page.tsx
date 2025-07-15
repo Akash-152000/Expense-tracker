@@ -1,15 +1,9 @@
+import AddExpenseForm from './AddExpensesForm';
 
 export default function AddExpensePage() {
     return (
-        <main className="p-6">
-            <h1 className="text-2xl font-bold">Add Expense</h1>
-            <p>Use this page to record a new transaction or spending entry.</p>
-        </main>
+        <div className="p-4 sm:p-6 md:p-8">
+            <AddExpenseForm />
+        </div>
     );
 }
-
-
-export const metadata = {
-    title: "Add Expense | Expense Tracker",
-    description: "Log your expenses and keep track of your daily spending.",
-};
