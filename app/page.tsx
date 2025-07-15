@@ -1,9 +1,5 @@
-import AuthButton from "@/components/AuthButton";
+import { redirect } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <main className="flex items-center justify-center min-h-screen">
-      <AuthButton />
-    </main>
-  );
+export default function RootPage() {
+  redirect('/login');
 }
