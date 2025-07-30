@@ -8,12 +8,11 @@ datasource db {
 }
 
 model UserSetting {
-  id        String   @id @default(uuid())
-  userId    String   @unique
-  name      String
-  currency  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String   @id @default(uuid()) @map("id")
+  full_name String?
+  currency  String   @default("USD")
+
+  @@map("user_settings")
 }
 
 model Expense {

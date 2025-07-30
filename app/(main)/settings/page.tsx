@@ -2,39 +2,87 @@
 
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { signOut } from 'next-auth/react';
 
 export default function SettingsPage() {
     const { data: session, status } = useSession();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [currency, setCurrency] = useState('INR');
+    const [loading, setLoading] = useState(false);
 
+    // Redirect if not authenticated
     useEffect(() => {
         if (status === 'unauthenticated') {
             redirect('/');
         }
     }, [status]);
 
-    if (status === 'loading') {
-        return <div className="p-4">Loading...</div>;
-    }
+    // Load user settings on mount
+    useEffect(() => {
+        if (session?.user) {
+            setName(session.user.name || '');
+            setEmail(session.user.email || '');
+
+            // Load from backend
+            fetch('/api/users/settings')
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data?.currency) {
+                        setCurrency(data.currency);
+                    }
+                });
+        }
+    }, [session]);
+
+    const handleSave = async () => {
+        setLoading(true);
+        const res = await fetch('/api/users/settings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, currency }),
+        });
+
+        if (res.ok) {
+            alert('Settings saved!');
+        } else {
+            alert('Failed to save settings.');
+        }
+
+        setLoading(false);
+    };
+
+    if (status === 'loading') return <div className="p-4">Loading...</div>;
 
     return (
         <div className="max-w-3xl mx-auto space-y-6">
             {/* Profile Settings */}
             <Section title="Profile Settings">
-                <Input label="Full Name" value={session?.user?.name || ''} />
-                <Input label="Email" value={session?.user?.email || ''} />
+                <EditableInput label="Full Name" value={name} onChange={(e) => setName(e.target.value)} />
+                <Input label="Email" value={email} />
             </Section>
 
             {/* Currency Settings */}
             <Section title="Currency Settings">
                 <label className="block mb-1 text-sm font-medium">Primary Currency</label>
-                <select className="w-full border rounded px-3 py-2">
-                    <option>USD - US Dollar</option>
-                    <option>INR - Indian Rupee</option>
-                    <option>EUR - Euro</option>
+                <select
+                    className="w-full border rounded px-3 py-2"
+                    value={currency}
+                    onChange={(e) => setCurrency(e.target.value)}
+                >
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
                 </select>
-                <button className="mt-3 px-4 py-2 bg-blue-500 text-white rounded">Save Settings</button>
+
+                <button
+                    onClick={handleSave}
+                    className="mt-3 px-4 py-2 bg-blue-500 text-white rounded"
+                    disabled={loading}
+                >
+                    {loading ? 'Saving...' : 'Save Settings'}
+                </button>
             </Section>
 
             {/* Categories & Tags */}
@@ -79,7 +127,34 @@ function Input({ label, value }: { label: string; value: string }) {
     return (
         <div className="mb-3">
             <label className="block mb-1 text-sm font-medium">{label}</label>
-            <input type="text" value={value} readOnly className="w-full border rounded px-3 py-2 bg-gray-100" />
+            <input
+                type="text"
+                value={value}
+                readOnly
+                className="w-full border rounded px-3 py-2 bg-gray-100"
+            />
+        </div>
+    );
+}
+
+function EditableInput({
+    label,
+    value,
+    onChange,
+}: {
+    label: string;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
+    return (
+        <div className="mb-3">
+            <label className="block mb-1 text-sm font-medium">{label}</label>
+            <input
+                type="text"
+                value={value}
+                onChange={onChange}
+                className="w-full border rounded px-3 py-2"
+            />
         </div>
     );
 }
